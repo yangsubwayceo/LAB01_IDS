@@ -169,11 +169,11 @@ visitors %>%
 _Perform the same calculation for the 2021 admissions data._
 
 ```{r Ex_h}
-#visitors %>% 
-#  ______(
-#    __________,
-#    __________
-#  )
+visitors %>% 
+  summarise(
+    mean_2021 = mean(n_2021, na.rm = TRUE),
+    med_2022 = median(n_2021, na.rm = TRUE)
+  )
 ```
 
 All values in the output are `NA`!
@@ -182,7 +182,7 @@ All values in the output are `NA`!
 
 _What does `NA` stand for and why are you getting this as your answer to the previous question._
 
-**Write your answer here**
+**NA stands for "not applicable" due to no input, and this is the output because some of the entries in the column n_2021 have the value "NA".   **
 
 
 
@@ -191,7 +191,7 @@ _What does `NA` stand for and why are you getting this as your answer to the pre
 
 _Look at the help pages for the `mean()` and `median()` commands to see what the input argument `na.rm` does. Edit your code from exercise h so that it computes the summary statistics where data is available._
 
-**Write your answer here**
+**na.rm : a logical evaluating to TRUE or FALSE indicating whether NA values should be stripped before the computation proceeds.**
 
 
 
@@ -213,7 +213,7 @@ visitors %>%
 
 _Observe in question 6 that the mean statistics across all settings are much larger than the corresponding median statistics. Discuss in your group what this suggests about the data._
 
-**Write your answer here**
+**There exists extreme values as outliers to the right side of the distribution of data, causing the distribution of data to be skewered to the left side**
 
 
 
@@ -236,7 +236,9 @@ visitors_with_nations <- visitors %>%
 visitors_with_nations %>% 
   group_by(nation) %>%
   summarise(
-    IQR_2022 = IQR(n_2022)
+    IQR_2022 = IQR(n_2022),
+    mean_2022 = mean(n_2022),
+    med_2022 = median(n_2022)
   )
 ```
 
@@ -246,8 +248,8 @@ _How many tourist attractions are there in each of the 4 nations? From this, dis
 
 
 ```{r Ex_l}
-#________ %>%
-#  ______(_______)
+visitors_with_nations %>%
+  count(nation)
 ```
 
 
